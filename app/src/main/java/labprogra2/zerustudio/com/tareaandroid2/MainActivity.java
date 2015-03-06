@@ -36,7 +36,8 @@ public class MainActivity extends ActionBarActivity {
         for(int l=0; l < classRoom.getStudents().size(); l++){
             values.add(classRoom.getStudents().get(l).toString());
         }
-        final StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.abc_list_menu_item_layout, values);
+        //final StableArrayAdapter adapter = new StableArrayAdapter(this, R.id.txtName, values);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.activity_list, R.id.txtName, values);
         listview.setAdapter(adapter);
 
         /*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
