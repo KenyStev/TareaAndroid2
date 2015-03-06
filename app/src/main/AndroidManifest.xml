@@ -17,7 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListActivityNames">
+            android:name=".AddStudentActivity"
+            android:label="@string/title_activity_add_student" >
+        </activity>
+        <activity
+            android:name=".InfoStudentActivity"
+            android:label="@string/title_activity_info_student" >
+        </activity>
+        <activity
+            android:name=".ActualizarNotaActivity"
+            android:label="@string/title_activity_actualizar_nota" >
         </activity>
     </application>
 

@@ -9,20 +9,21 @@ import android.widget.Button;
 
 
 public class ListActivityNames extends ListActivity {
+    /*
     public static ClassRoom classRoom = new ClassRoom();
 
     static{
         classRoom.addStudent("Keny",21411165);
         classRoom.addStudent("KenyStev",21411166);
         classRoom.addStudent("Kenshi",21411167);
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_list);
 
-        String[] values = new String[classRoom.getStudents().size()];
+        /*String[] values = new String[classRoom.getStudents().size()];
         for(int l=0; l < classRoom.getStudents().size(); l++){
             values[l] = classRoom.getStudents().get(l).toString();
         }
@@ -31,6 +32,7 @@ public class ListActivityNames extends ListActivity {
         setListAdapter(adapter);
 
         Button addStudent = (Button)findViewById(R.id.addStudent);
+        */
 
     }
 
