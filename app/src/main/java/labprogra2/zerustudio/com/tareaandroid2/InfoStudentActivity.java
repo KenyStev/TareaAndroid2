@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import android.widget.Toast;
 public class InfoStudentActivity extends ActionBarActivity {
     final int UPDATE_NOTA=2;
     Student selected;
-    TextView nota;
+    TextView notaInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,11 @@ public class InfoStudentActivity extends ActionBarActivity {
 
         TextView name = (TextView)findViewById(R.id.txtName);
         TextView cuenta = (TextView)findViewById(R.id.txtNCuenta);
-        nota = (TextView)findViewById(R.id.txtNota);
+        notaInfo = (TextView)findViewById(R.id.txtNotaInfo);
 
         name.setText(selected.getName());
         cuenta.setText(selected.getCuenta()+"");
-        nota.setText(selected.getNotaFinal()+"");
+        notaInfo.setText(selected.getNotaFinal()+"");
     }
 
 
@@ -66,16 +67,34 @@ public class InfoStudentActivity extends ActionBarActivity {
             if(resultCode==RESULT_OK){
                 double notaNew = (double)data.getExtras().get("NOTA");
 
-                if(notaNew<=0 || notaNew>=100){
+                if(notaNew<0 || notaNew>100){
                     Toast.makeText(this, "No se puede Actualizar la nota: "+notaNew, Toast.LENGTH_LONG).show();
                 }else{
                     selected.setNotaFinal(notaNew);
-                    nota.setText(selected.getNotaFinal()+"");
+                    notaInfo.setText(selected.getNotaFinal()+"");
                     Toast.makeText(this, "Nota Actualizada con Exito!", Toast.LENGTH_LONG).show();
                 }
             }else{
                 Toast.makeText(this, "Actualizacion Cancelada!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void update(View view) {
+        EditText nota = (EditText)findViewById(R.id.txtNota);
+        double not = Double.parseDouble(nota.getText().toString());
+
+        if(not<0 || not>100){
+            Toast.makeText(this, "No se puede Actualizar la nota: "+not, Toast.LENGTH_LONG).show();
+        }else{
+            selected.setNotaFinal(not);
+            notaInfo.setText(selected.getNotaFinal()+"");
+            Toast.makeText(this, "Nota Actualizada con Exito!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void cancel(View view) {
+        Toast.makeText(this, "Actualizacion Cancelada!", Toast.LENGTH_LONG).show();
+        finish();
     }
 }

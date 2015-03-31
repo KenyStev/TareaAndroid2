@@ -3,6 +3,7 @@ package labprogra2.zerustudio.com.tareaandroid2;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -112,6 +113,25 @@ public class MainActivity extends ActionBarActivity {
             }
         }
         repaint();
+    }
+
+    public void addStudent(View view) {
+        String name = ((EditText)findViewById(R.id.etNameStudent)).getText().toString();
+        int cuenta = Integer.parseInt(((EditText) findViewById(R.id.etNoCuenta)).getText().toString());
+
+        if(classRoom.addStudent(name, cuenta)){
+            repaint();
+            Toast.makeText(this, "Se Agrego correctamente! " + name, Toast.LENGTH_LONG).show();
+            ((EditText)findViewById(R.id.etNameStudent)).setText("");
+            ((EditText)findViewById(R.id.etNoCuenta)).setText("");
+        }else{
+            Toast.makeText(this, "Codigo ya fue tomado!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void cancel(View view) {
+        ((EditText)findViewById(R.id.etNameStudent)).setText("");
+        ((EditText)findViewById(R.id.etNoCuenta)).setText("");
     }
 }
 

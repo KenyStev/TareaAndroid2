@@ -1,6 +1,7 @@
 package labprogra2.zerustudio.com.tareaandroid2;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +15,16 @@ public class AddStudentActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_add_student);
+
+        // Need to check if Activity has been switched to landscape mode
+        // If yes, finished and go back to the start Activity
+        /*if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            finish();
+            return;
+        }*/
         setContentView(R.layout.activity_add_student);
+
     }
 
 
@@ -41,14 +51,23 @@ public class AddStudentActivity extends ActionBarActivity {
     }
 
     public void addStudent(View view) {
-        String name = ((EditText)findViewById(R.id.etNameStudent)).getText().toString();
-        int cuenta = Integer.parseInt(((EditText) findViewById(R.id.etNoCuenta)).getText().toString());
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            AddStudentFragment addStudentFragment = (AddStudentFragment) getFragmentManager()
+                    .findFragmentById(R.id.addStudentFragmets);
+            addStudentFragment.addStudent(view);
+            finish();
+            return;
+        }else {
 
-        Intent i = new Intent();
-        i.putExtra("NAME", name);
-        i.putExtra("CUENTA", cuenta);
-        setResult(RESULT_OK, i);
-        finish();
+            String name = ((EditText) findViewById(R.id.etNameStudent)).getText().toString();
+            int cuenta = Integer.parseInt(((EditText) findViewById(R.id.etNoCuenta)).getText().toString());
+
+            Intent i = new Intent();
+            i.putExtra("NAME", name);
+            i.putExtra("CUENTA", cuenta);
+            setResult(RESULT_OK, i);
+            finish();
+        }
     }
 
     public void cancel(View view) {
